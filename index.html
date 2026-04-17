@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>JJK Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="sidebar-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="sidebar">
+    <div class="logo">
+      <h3>JJK Studio</h3>
+    </div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </div>
+
+  <h1>JJK Studio</h1>
+
+  <div class="tabs">
+    <button class="tablinks active" onclick="openTab(event, 'Pictures')">Pictures</button>
+    <button class="tablinks" onclick="openTab(event, 'Videos')">Videos</button>
+    <button class="tablinks" onclick="openTab(event, 'Favorites')">Favorites</button>
+  </div>
+
+  <div id="Pictures" class="tabcontent" style="display: block;">
+    <h2>Photo Gallery</h2>
+    <div class="gallery">
+      <div class="image" data-id="image1">
+        <button class="fav-btn" onclick="toggleFavorite('image1', 'img', 'images/AnimeX_1008715.jpeg', event)">☆</button>
+        <img src="images/AnimeX_1008715.jpeg" alt="Image 1" onclick="openImage('image1')" loading="lazy">
+      </div>
+      <div class="image" data-id="image2">
+        <button class="fav-btn" onclick="toggleFavorite('image2', 'img', 'images/lv_0_20260329215206.jpg', event)">☆</button>
+        <img src="images/lv_0_20260329215206.jpg" alt="Image 2" onclick="openImage('image2')" loading="lazy">
+      </div>
+      <div class="image" data-id="image3">
+        <button class="fav-btn" onclick="toggleFavorite('image3', 'img', 'images/Screenshot_20250607_221633_Chrome.jpg', event)">☆</button>
+        <img src="images/Screenshot_20250607_221633_Chrome.jpg" alt="Image 3" onclick="openImage('image3')" loading="lazy">
+      </div>
+      <div class="image" data-id="image4">
+        <button class="fav-btn" onclick="toggleFavorite('image4', 'img', 'images/Screenshot_20260416_091106_Video Player.jpg', event)">☆</button>
+        <img src="images/Screenshot_20260416_091106_Video Player.jpg" alt="Image 4" onclick="openImage('image4')" loading="lazy">
+      </div>
+      <div class="image" data-id="image5">
+        <button class="fav-btn" onclick="toggleFavorite('image5', 'img', 'images/Screenshot_20260414_224217_Video Player.jpg', event)">☆</button>
+        <img src="images/Screenshot_20260414_224217_Video Player.jpg" alt="Image 5" onclick="openImage('image5')" loading="lazy">
+      </div>
+      <div class="image" data-id="image6">
+        <button class="fav-btn" onclick="toggleFavorite('image6', 'img', 'images/Screenshot_20260415_221826_OneDrive.jpg', event)">☆</button>
+        <img src="images/Screenshot_20260415_221826_OneDrive.jpg" alt="Image 6" onclick="openImage('image6')" loading="lazy">
+      </div>
+      <div class="image" data-id="image7">
+        <button class="fav-btn" onclick="toggleFavorite('image7', 'img', 'images/VideoCapture_20260416-080255.jpg', event)">☆</button>
+        <img src="images/VideoCapture_20260416-080255.jpg" alt="Image 7" onclick="openImage('image7')" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div id="Videos" class="tabcontent">
+    <h2>Video Gallery</h2>
+    <div class="gallery">
+      <div class="video" data-id="video1">
+        <button class="fav-btn" onclick="toggleFavorite('video1', 'video', 'videos/lv_0_20260408205644.mp4', event)">☆</button>
+        <video poster="images/Screenshot_20260414_224217_Video Player.jpg" onclick="openVideo('video1')" playsinline>
+          <source src="videos/lv_0_20260408205644.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video" data-id="video2">
+        <button class="fav-btn" onclick="toggleFavorite('video2', 'video', 'videos/facebook_1775668852797.mp4', event)">☆</button>
+        <video poster="images/Screenshot_20260416_091106_Video Player.jpg" onclick="openVideo('video2')" playsinline>
+          <source src="videos/facebook_1775668852797.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video" data-id="video3">
+        <button class="fav-btn" onclick="toggleFavorite('video3', 'video', 'videos/Utool-20260408-210526965.mp4', event)">☆</button>
+        <video poster="images/VideoCapture_20260416-080255.jpg" onclick="openVideo('video3')" playsinline>
+          <source src="videos/Utool-20260408-210526965.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <div id="Favorites" class="tabcontent">
+    <h2>Favorites</h2>
+    <div class="gallery" id="favoritesGallery"></div>
+  </div>
+
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeImage()">&times;</span>
+      <img id="modalImage" src="">
+    </div>
+  </div>
+
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeVideo()">&times;</span>
+      <video id="modalVideo" controls playsinline>
+        <source src="" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div id="welcomeModal" class="welcome-modal">
+    <div class="welcome-content">
+      <h2>مرحباً بك</h2>
+      <p>الرجاء إدخال اسمك للمتابعة</p>
+      <input type="text" id="usernameInput" placeholder="اكتب اسمك هنا" autocomplete="off">
+      <button onclick="submitUsername()">دخول</button>
+    </div>
+  </div>
+
+  <div id="messageModal" class="welcome-modal">
+    <div class="welcome-content message-box">
+      <div id="messageText"></div>
+      <button onclick="closeMessageModal()">تصفح الموقع</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
